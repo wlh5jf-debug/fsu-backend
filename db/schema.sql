@@ -18,6 +18,7 @@ CREATE TABLE departments (
 
 CREATE TABLE professors (
     id serial PRIMARY KEY,
+    name text NOT NULL,
     bio text NOT NULL,
     email text NOT NULL,
     department_id integer NOT NULL REFERENCES departments(id) ON DELETE CASCADE
