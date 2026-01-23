@@ -7,13 +7,13 @@ import {
     getDepartmentById,
     deleteDepartment,
     updateDepartment
-} from "#db/queries/departments";
+} from "#db/queries/departments.js";
 
-import { getProfessorByDepartmentId } from "#db/queries/professors";
+import { getProfessorsByDepartment } from "#db/queries/professors.js";
 
-import requireUser from "#middleware/requireUser";
-import requireBody from "#middleware/requireBody";
-import getUserFromToken from "#middleware/getUserFromToken";
+import requireUser from "../middleware/requireUser.js";
+import requireBody from "../middleware/requireBody.js";
+import getUserFromToken from "../middleware/getUserFromToken.js";
 
 router.get("/", async (req, res) => {
     const departments = await getDepartments();
@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
         return res.status(404).json({ error: "Department not found"});
     }
 
-    const professors = await getProfessorByDepartmentId(req.params.id)
+    const professors = await getProfessorsByDepartment(req.params.id)
 
     res.json({
         ...department,

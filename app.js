@@ -3,9 +3,9 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 dotenv.config();
-import usersRouter from "./api/users"
-import departmentsRouter from "./api/routes/departments.js";
-import professorsRouter from "./api/routes/professors.js";
+import usersRouter from "./api/apiUsers.js"
+import departmentsRouter from "./api/apiDep.js";
+import professorsRouter from "./api/apiProfessors.js";
 export default app;
 
 

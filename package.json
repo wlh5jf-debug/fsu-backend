@@ -1,9 +1,11 @@
 {
   "name": "fsu-backend",
   "type": "module",
-  "imports": {
-    "#*": "./*.js"
-  },
+"imports": {
+  "#db/*": "./db/*",
+  "#middleware/*": "./middleware/*",
+  "#utils/*": "./utils/*"
+},
   "scripts": {
     "start": "node --env-file=.env server.js",
     "dev": "node --watch --env-file=.env server.js",

@@ -1,9 +1,9 @@
 import express from "express";
 const router = express.Router();
 export default router;
-import { createProfessor, getAllProfessors, getProfessorById, updateProfessor, deleteProfessor } from "#db/queries/professors";
-import getUserFromToken from "#middleware/getUserFromToken";
-import requireUser from "#middleware/requireUser";
+import { createProfessor, getAllProfessors, getProfessorById, updateProfessor, deleteProfessorById } from "#db/queries/professors.js";
+import getUserFromToken from "../middleware/getUserFromToken.js";
+import requireUser from "../middleware/requireUser.js";
 
 router.get("/", async (req, res) => {
     const professors = await getAllProfessors();
@@ -69,7 +69,7 @@ router.delete(
     getUserFromToken,
     requireUser,
     async (req, res) => {
-        const professor = await deleteProfessor(req.params.id);
+        const professor = await deleteProfessorById(req.params.id);
 
         if (!professor) {
             return res.status(404).json({ error: "Professor not found" });
