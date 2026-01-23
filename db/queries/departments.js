@@ -34,11 +34,18 @@ export async function getDepartmentById(id) {
 }
 
 export async function deleteDepartment(id) {
-  const sql = `DELETE FROM departments WHERE id = $1`;
+  const sql = `
+    DELETE FROM departments
+    WHERE id = $1
+    RETURNING *`;
 
-  const { rows: department } = await db.query(sql, [id]);
+  const {
+    rows: [department],
+  } = await db.query(sql, [id]);
+
   return department;
 }
+
 
 export async function updateDepartment(id, name, description, phone) {
   const sql = `UPDATE departments SET name = $2, description = $3, phone = $4 WHERE id = $1 RETURNING *`;
